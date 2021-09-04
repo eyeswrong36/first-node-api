@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const connection = require('../connection/database')
-const validateToken = require('../auth/tokenValidaton')
 const router = express.Router()
 
 const jwt = require('jsonwebtoken')
@@ -34,7 +33,7 @@ router.post('/users/login', (req, res) => {
         // console.log(results[0].password);
         results[0].password = undefined
         jsontoken = jwt.sign({ result: results[0] }, process.env.SECRET, {
-            expiresIn: '1m'
+            expiresIn: '1h'
         }) 
         res.send({
             success: 1,

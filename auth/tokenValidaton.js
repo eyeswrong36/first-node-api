@@ -7,10 +7,9 @@ module.exports = {
             token = token.slice(7)
             jwt.verify(token, process.env.SECRET, (err, decoded) => {
                 if (err) {
-                    console.log(err.message);
                     return res.status(401).send({
                         success: 0,
-                        message: err.message == 'jwt expired' ? 'Token expired!' : 'Invalid token!'
+                        message: err.message
                     })
                 } else {
                     next()
